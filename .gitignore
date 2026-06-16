@@ -1,0 +1,62 @@
+# Python caches
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local environments and logs
+.env
+.venv/
+venv/
+env/
+runs/
+
+# Generated data and labels
+Label_*.csv
+Ref_*/
+train_set_*.csv
+validation_set_*.csv
+test_set_*.csv
+Clipping_Summary.csv
+__regen_backup_*/
+
+# Paper/private experiment material
+paper/
+results/
+scripts/
+experiments/
+DataSet_construction.py
+Disturbance_generation.py
+Train_validate_BX_2D_CRNN_rebuttal.py
+Testing_M5_Network_BX_CRNN.py
+DFT_Filter_Decompose.py
+Fx_algorithms.py
+
+# Generated figures and temporary filter folders
+*.png
+Training_figs_T60_*/
+sub_control_filters_T60_*/
+sub_control_filters_finaltest/
+sub_control_filters_realpath/
+sub_filters_temp/
+
+# Large model/filter/noise folders: ignore by default, then allow Fig. 10 assets.
+CNN_models/*
+!CNN_models/2D_v1002_CRNN_merged_v5.pth
+
+Pre_trained_CFs_T60_*/*
+!Pre_trained_CFs_T60_0.1/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.2/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.3/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.4/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.5/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.6/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.7/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.8/CF_0.2_30_120.mat
+!Pre_trained_CFs_T60_0.9/CF_0.2_30_120.mat
+
+finaltest_noises/*
+!finaltest_noises/3-188726-A-35.wav
+!finaltest_noises/compre.wav
+
+outputs/*
+!outputs/fig10_nr_vs_rt60.png

@@ -1,0 +1,13 @@
+numpy
+pandas
+scipy
+matplotlib
+soundfile
+torch
+torchaudio
+tensorboard
+progressbar2
+gpuRIR
+scikit-learn
+pyroomacoustics
+jupyter
