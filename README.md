@@ -73,6 +73,3 @@ azimuth = 120 deg
 
 The executed notebook includes a prediction summary table. Across all tested reverberation times and noise cases, the CRNN predicts the expected source grid for every segment.
 
-## License
-
-This project is released under the GNU General Public License v3.0. See `LICENSE`.
