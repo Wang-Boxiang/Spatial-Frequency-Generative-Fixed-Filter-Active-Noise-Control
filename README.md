@@ -1,39 +1,43 @@
 # Spatial-Frequency Cued GFANC
 
-This repository contains the Fig. 10 reproduction notebook for:
+Code release for the paper:
 
-**Spatial-Frequency Cued Generative Fixed-Filter Active Noise Control Based on Deep Learning in Reverberant Environments**.
+**Spatial-Frequency Cued Generative Fixed-Filter Active Noise Control Based on Deep Learning in Reverberant Environments**
 
-The released notebook demonstrates the spatial-frequency GFANC pipeline under different reverberation times. It uses a trained CRNN to estimate the source grid location from four-channel reference signals, selects the corresponding pretrained control filter, reconstructs the spatial-frequency control filter from the CRNN regression output, and plots noise reduction versus `RT60`.
+![Block diagram of the proposed SF-GFANC method](assets/sf_gfanc_overview.jpg)
 
-## Repository Scope
+## Paper Highlights
 
-This public release is intentionally scoped to the Fig. 10 simulation only.
+This work proposes **SF-GFANC**, a spatial-frequency cued generative fixed-filter active noise control method for reverberant environments.
 
-Included:
+- It extends GFANC by jointly using the **3D source location** and the **frequency characteristics** of the noise source.
+- A lightweight multi-task **CRNN** estimates distance, elevation, azimuth, and sub-filter combination weights from multi-channel STFT features.
+- A pre-trained spatial control-filter library provides location-aware candidate filters, while the CRNN regression output generates frequency-adaptive filters.
+- The co-processor and real-time controller run in parallel: CRNN inference is performed at the frame rate, while ANC filtering remains at the sampling rate.
+- Simulations with unseen rooms, unseen noises, and measured acoustic paths show robust localization and improved noise reduction over representative ANC baselines.
 
-- `notebooks/fig10_nr_vs_rt60.ipynb`: executable Fig. 10 notebook with embedded output.
-- `CRNN.py`: CRNN model definition.
-- `MyDataLoader_2D_BX.py`: four-channel STFT feature construction.
-- `utilities_funcs.py`: microphone geometry, AWGN, and filter utilities.
-- `Fixed_filter_noise_cancellation_2x1x1.py`: fixed-filter GFANC controller.
-- `CNN_models/2D_v1002_CRNN_merged_v5.pth`: trained CRNN checkpoint used by Fig. 10.
-- `Pre_trained_CFs_T60_*/CF_0.2_30_120.mat`: pretrained control filters for `RT60 = 0.1 ... 0.9 s`.
+## Released Materials
+
+The current public release includes the executable reverberation-robustness experiment and the runtime assets needed to reproduce it:
+
+- `notebooks/fig10_nr_vs_rt60.ipynb`: executable notebook with embedded output.
+- `CRNN.py`: CRNN model definition used by the notebook.
+- `MyDataLoader_2D_BX.py`: STFT magnitude/phase feature construction.
+- `utilities_funcs.py`: microphone geometry, AWGN, and filter reconstruction helpers.
+- `Fixed_filter_noise_cancellation_2x1x1.py`: frame-wise fixed-filter controller.
+- `CNN_models/2D_v1002_CRNN_merged_v5.pth`: trained CRNN checkpoint.
+- `pretrained_control_filters/`: pre-trained control filters for `RT60 = 0.1 ... 0.9 s`.
 - `SecondaryPath_final.mat`: identified secondary path.
-- `finaltest_noises/3-188726-A-35.wav` and `finaltest_noises/compre.wav`: real-noise examples used in Fig. 10.
+- `finaltest_noises/`: real-noise examples used by the notebook.
+- `outputs/fig10_nr_vs_rt60.png`: saved preview figure from the executed notebook.
 
-Not included:
-
-- training data and test data generation scripts
-- full training datasets
-- unrelated paper-figure scripts
-- `DFT_Filter_Decompose.py`; the small filter-decomposition routine used by Fig. 10 is embedded directly in the notebook
+Training-set generation scripts and full training datasets are not included in this release.
 
 ## Environment
 
-The code was verified with Python 3.10 and the existing `ANC` conda environment used for the paper experiments.
+The code was verified with Python 3.10.
 
-Install the Python dependencies:
+Install the dependencies:
 
 ```bash
 pip install -r requirements.txt
@@ -41,7 +45,7 @@ pip install -r requirements.txt
 
 Key dependencies include `numpy`, `scipy`, `pandas`, `matplotlib`, `torch`, `torchaudio`, `soundfile`, and `gpuRIR`.
 
-## Run Fig. 10
+## Run the Notebook
 
 From the repository root:
 
@@ -49,19 +53,9 @@ From the repository root:
 jupyter notebook notebooks/fig10_nr_vs_rt60.ipynb
 ```
 
-Then run all cells.
+Then run all cells. The notebook will load the trained CRNN, simulate reverberant reference signals for `RT60 = 0.1 ... 0.9 s`, select and reconstruct the corresponding SF-GFANC filters, and plot the averaged noise reduction versus reverberation time.
 
-The notebook will:
-
-1. load the trained CRNN checkpoint,
-2. synthesize four-channel reference signals for `RT60 = 0.1 ... 0.9 s`,
-3. run CRNN localization for each 0.5 s segment,
-4. select the pretrained control filter from the predicted source grid,
-5. reconstruct the spatial-frequency GFANC filter,
-6. compute the noise reduction for four noise cases, and
-7. display the Fig. 10 curve directly in the notebook.
-
-The notebook also saves a standalone preview image:
+The generated figure is also saved to:
 
 ```text
 outputs/fig10_nr_vs_rt60.png
@@ -69,7 +63,7 @@ outputs/fig10_nr_vs_rt60.png
 
 ## Expected Prediction Check
 
-For the included Fig. 10 setup, the target source grid is:
+For the released notebook configuration, the target source grid is:
 
 ```text
 distance = 0.2 m
@@ -77,13 +71,7 @@ elevation = 30 deg
 azimuth = 120 deg
 ```
 
-The executed notebook includes a prediction summary table. For all 9 reverberation times and all 4 noise cases, the CRNN predicts:
-
-```text
-(0.2 m, 30 deg, 120 deg)
-```
-
-for all 10 segments in each case.
+The executed notebook includes a prediction summary table. Across all tested reverberation times and noise cases, the CRNN predicts the expected source grid for every segment.
 
 ## License
 

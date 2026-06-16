@@ -33,26 +33,28 @@ Fx_algorithms.py
 
 # Generated figures and temporary filter folders
 *.png
+!assets/
+!assets/sf_gfanc_overview.jpg
 Training_figs_T60_*/
 sub_control_filters_T60_*/
 sub_control_filters_finaltest/
 sub_control_filters_realpath/
 sub_filters_temp/
 
-# Large model/filter/noise folders: ignore by default, then allow Fig. 10 assets.
+# Large model/filter/noise folders: ignore by default, then allow released assets.
 CNN_models/*
 !CNN_models/2D_v1002_CRNN_merged_v5.pth
 
-Pre_trained_CFs_T60_*/*
-!Pre_trained_CFs_T60_0.1/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.2/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.3/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.4/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.5/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.6/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.7/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.8/CF_0.2_30_120.mat
-!Pre_trained_CFs_T60_0.9/CF_0.2_30_120.mat
+pretrained_control_filters/*
+!pretrained_control_filters/CF_RT60_0.1_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.2_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.3_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.4_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.5_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.6_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.7_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.8_0.2_30_120.mat
+!pretrained_control_filters/CF_RT60_0.9_0.2_30_120.mat
 
 finaltest_noises/*
 !finaltest_noises/3-188726-A-35.wav
