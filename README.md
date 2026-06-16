@@ -61,15 +61,3 @@ The generated figure is also saved to:
 outputs/fig10_nr_vs_rt60.png
 ```
 
-## Expected Prediction Check
-
-For the released notebook configuration, the target source grid is:
-
-```text
-distance = 0.2 m
-elevation = 30 deg
-azimuth = 120 deg
-```
-
-The executed notebook includes a prediction summary table. Across all tested reverberation times and noise cases, the CRNN predicts the expected source grid for every segment.
-
