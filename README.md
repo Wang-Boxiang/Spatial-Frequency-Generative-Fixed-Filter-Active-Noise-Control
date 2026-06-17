@@ -2,17 +2,10 @@
 
 Code release for the paper:
 
-**Spatial-Frequency Cued Generative Fixed-Filter Active Noise Control Based on Deep Learning in Reverberant Environments** published in Signal Processing
+**Spatial-Frequency Cued Generative Fixed-Filter Active Noise Control Based on Deep Learning in Reverberant Environments**, published in *Signal Processing*.
 
 ![Block diagram of the proposed SF-GFANC method](assets/sf_gfanc_overview.png)
 
-To replace the README figure with a higher-resolution version, upload a new image with the same path:
-
-```text
-assets/sf_gfanc_overview.jpg
-```
-
-GitHub will display the new image automatically after the file is overwritten and pushed.
 
 ## Paper Highlights
 
