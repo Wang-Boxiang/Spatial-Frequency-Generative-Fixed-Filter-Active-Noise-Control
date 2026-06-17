@@ -42,8 +42,8 @@ sub_control_filters_realpath/
 sub_filters_temp/
 
 # Large model/filter/noise folders: ignore by default, then allow released assets.
-CNN_models/*
-!CNN_models/2D_v1002_CRNN_merged_v5.pth
+CRNN_models/*
+!CRNN_models/2D_v1002_CRNN_merged_v5.pth
 
 pretrained_control_filters/*
 !pretrained_control_filters/CF_RT60_0.1_0.2_30_120.mat
